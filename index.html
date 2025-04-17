@@ -13,9 +13,21 @@
         padding: 1rem;
       }
 
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .logo {
+        height: 50px;
+      }
+
       h2 {
-        text-align: center;
         color: #333;
+        margin: 0;
       }
 
       form {
@@ -76,7 +88,11 @@
     </style>
   </head>
   <body>
-    <h2>Form Pengaduan Masyarakat</h2>
+    <!-- Header dengan logo dan judul -->
+    <div class="header">
+      <img src="assets/logo.png" alt="Logo" class="logo" />
+      <h2>Form Pengaduan Masyarakat</h2>
+    </div>
 
     <form id="pengaduanForm">
       <input
