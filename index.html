@@ -63,11 +63,9 @@
       padding: 1.25rem;
       border-radius: 12px;
       box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-      transition: background-color 0.3s ease;
     }
 
-    input,
-    select {
+    input, select {
       width: 100%;
       padding: 0.9rem;
       margin-bottom: 1rem;
@@ -78,8 +76,7 @@
       transition: border 0.2s ease;
     }
 
-    input:focus,
-    select:focus {
+    input:focus, select:focus {
       border-color: #3498db;
       outline: none;
     }
@@ -140,34 +137,6 @@
         font-size: 1.5rem;
       }
     }
-
-    /* Spinner */
-    .spinner {
-      border: 4px solid rgba(255, 255, 255, 0.3);
-      border-top: 4px solid white;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      animation: spin 1s linear infinite;
-      display: inline-block;
-      vertical-align: middle;
-      margin-left: 8px;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Success flash effect */
-    .success-anim {
-      animation: successFlash 0.6s ease;
-    }
-
-    @keyframes successFlash {
-      0% { background-color: #d4edda; }
-      100% { background-color: white; }
-    }
   </style>
 </head>
 <body>
@@ -214,7 +183,7 @@
     const status = document.getElementById("status");
     const preview = document.getElementById("preview");
 
-    const scriptURL = "https://script.google.com/macros/s/AKfycbwvptIaZyohNrVQi561ph8GPP8oxKnJi5NbO3gCYUKyg9Ol8I1IYCvR34_tlfHbsW3yYw/exec"; // Ganti URL ini!
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwYJ_ResLaH1oo_jy0ThN9PYRoJL3tFyH-bqqFpCLJGLMWEwLMgQhJfFt6oRL4amk45WQ/exec";  // Ganti dengan URL Web App kamu
 
     form.foto.addEventListener("change", () => {
       const file = form.foto.files[0];
@@ -238,7 +207,7 @@
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      status.innerHTML = `Mengirim <span class="spinner"></span>`;
+      status.textContent = "Mengirim...";
       status.className = "";
 
       const reader = new FileReader();
@@ -256,10 +225,6 @@
           status.className = "success";
           form.reset();
           preview.style.display = "none";
-
-          // Efek sukses animasi
-          form.classList.add("success-anim");
-          setTimeout(() => form.classList.remove("success-anim"), 600);
         })
         .catch((err) => {
           status.textContent = "Error: " + err.message;
