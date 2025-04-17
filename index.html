@@ -5,50 +5,86 @@
     <title>Form Pengaduan Masyarakat</title>
     <style>
       body {
-        font-family: Arial;
-        max-width: 500px;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        max-width: 600px;
         margin: auto;
         padding: 2rem;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        background: white;
       }
-      input,
-      select,
-      textarea {
+
+      header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      header img {
+        width: 100px;
+        height: auto;
+      }
+
+      h2 {
+        text-align: center;
+        color: #333;
+      }
+
+      input, select, textarea {
         width: 100%;
         margin-bottom: 1rem;
-        padding: 0.5rem;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
       }
+
       button {
         padding: 0.75rem;
         background: steelblue;
         color: white;
         border: none;
         width: 100%;
+        font-size: 1rem;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+
+      button:hover {
+        background-color: #4682b4;
+      }
+
+      #status {
+        text-align: center;
+        margin-top: 1rem;
+        font-weight: bold;
       }
     </style>
   </head>
   <body>
+    <header>
+      <img src="https://images.app.goo.gl/NQ2bovnbn1xKr7yR6" alt="Logo" />
+    </header>
+
     <h2>Form Pengaduan Masyarakat</h2>
+
     <form id="pengaduanForm">
-      <input
-        type="text"
-        name="namapelapor"
-        placeholder="Nama Pelapor"
-        required
-      />
-      <input
-        type="text"
-        name="jenispengaduan"
-        placeholder="Jenis Pengaduan"
-        required
-      />
-      <input
-        type="text"
-        name="lokasikejadian"
-        placeholder="Lokasi Kejadian"
-        required
-      />
+      <input type="text" name="namapelapor" placeholder="Nama Pelapor" required />
+
+      <select name="jenispengaduan" required>
+        <option value="">-- Pilih Jenis Pengaduan --</option>
+        <option value="Area Toilet Kotor">Area Toilet Kotor</option>
+        <option value="Area Kampung Eropa Kotor">Area Kampung Eropa Kotor</option>
+        <option value="Sampah Menumpuk">Sampah Menumpuk</option>
+      </select>
+
+      <select name="lokasikejadian" required>
+        <option value="">-- Pilih Lokasi Kejadian --</option>
+        <option value="PSC">PSC</option>
+        <option value="PRC">PRC</option>
+      </select>
+
       <input type="date" name="tanggal" required />
       <input type="file" name="foto" accept="image/*" required />
+
       <button type="submit">Kirim</button>
     </form>
 
@@ -57,8 +93,7 @@
     <script>
       const form = document.getElementById("pengaduanForm");
       const status = document.getElementById("status");
-      const scriptURL =
-        "https://script.google.com/macros/s/AKfycbwvptIaZyohNrVQi561ph8GPP8oxKnJi5NbO3gCYUKyg9Ol8I1IYCvR34_tlfHbsW3yYw/exec"; // GANTI PUNYA KAMU
+      const scriptURL = "https://script.google.com/macros/s/AKfycbwBHtYMd88QU8Tg3UfN43r9glnYPB48lN3GJLJzp3KS9W6zlXcK_FTSxqH3d_ylW2k-Gw/exec";
 
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
