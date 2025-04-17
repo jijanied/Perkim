@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Form Pengaduan Masyarakat</title>
+    <style>
+      body {
+        font-family: Arial;
+        max-width: 500px;
+        margin: auto;
+        padding: 2rem;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+      }
+      button {
+        padding: 0.75rem;
+        background: steelblue;
+        color: white;
+        border: none;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Form Pengaduan Masyarakat</h2>
+    <form id="pengaduanForm">
+      <input
+        type="text"
+        name="namapelapor"
+        placeholder="Nama Pelapor"
+        required
+      />
+      <input
+        type="text"
+        name="jenispengaduan"
+        placeholder="Jenis Pengaduan"
+        required
+      />
+      <input
+        type="text"
+        name="lokasikejadian"
+        placeholder="Lokasi Kejadian"
+        required
+      />
+      <input type="date" name="tanggal" required />
+      <input type="file" name="foto" accept="image/*" required />
+      <button type="submit">Kirim</button>
+    </form>
+
+    <p id="status"></p>
+
+    <script>
+      const form = document.getElementById("pengaduanForm");
+      const status = document.getElementById("status");
+      const scriptURL = "GANTI_DENGAN_WEBAPP_URL";
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        status.textContent = "Mengirim...";
+
+        const fileInput = form.querySelector('input[name="foto"]');
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+          const data = new FormData(form);
+          data.set("foto", reader.result);
+
+          fetch(scriptURL, { method: "POST", body: data })
+            .then((res) => res.text())
+            .then((txt) => {
+              status.textContent = txt;
+              form.reset();
+            })
+            .catch((err) => (status.textContent = "Error: " + err));
+        };
+
+        reader.readAsDataURL(file);
+      });
+    </script>
+  </body>
+</html>
