@@ -1,152 +1,142 @@
 <!DOCTYPE html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Form Pengaduan Masyarakat</title>
-    <link rel="icon" type="image/png" href="assets/logo.png" />
-    <style>
-      * {
-        box-sizing: border-box;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Form Pengaduan Masyarakat</title>
+  <link rel="icon" href="assets/logo.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
 
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f2f2f2;
-        margin: 0;
-        padding: 1rem;
-      }
+    body {
+      margin: 0;
+      padding: 2rem;
+      background-color: #f4f6f8;
+      color: #333;
+    }
 
+    .container {
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .header img {
+      height: 60px;
+    }
+
+    .header h2 {
+      font-size: 1.75rem;
+      margin: 0;
+      color: #2c3e50;
+    }
+
+    .intro {
+      background: #ffffff;
+      padding: 1.25rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    form {
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      background: #3498db;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #2980b9;
+    }
+
+    #status {
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    #status.success {
+      color: green;
+    }
+
+    #status.error {
+      color: red;
+    }
+
+    #preview {
+      display: none;
+      margin: 1rem auto;
+      max-width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    @media (max-width: 600px) {
       .header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        flex-wrap: wrap;
-        text-align: center;
-        margin-bottom: 1.5rem;
+        flex-direction: column;
       }
 
-      .logo {
+      .header img {
         height: 50px;
       }
 
-      h2 {
-        color: #333;
-        margin: 0;
+      .header h2 {
         font-size: 1.5rem;
       }
-
-      .intro {
-        max-width: 600px;
-        margin: 0 auto 1.5rem;
-        background-color: #fff;
-        padding: 1rem 1.5rem;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-        font-size: 0.95rem;
-        color: #444;
-        line-height: 1.6;
-      }
-
-      form {
-        background: #fff;
-        padding: 2rem;
-        border-radius: 10px;
-        max-width: 500px;
-        margin: auto;
-        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-      }
-
-      input,
-      select {
-        width: 100%;
-        margin-bottom: 1rem;
-        padding: 0.75rem;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
-
-      button {
-        width: 100%;
-        padding: 0.75rem;
-        background-color: steelblue;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        font-size: 1rem;
-        cursor: pointer;
-      }
-
-      button:hover {
-        background-color: #4682b4;
-      }
-
-      #status {
-        text-align: center;
-        margin-top: 1rem;
-        font-weight: bold;
-      }
-
-      #status.success {
-        color: green;
-      }
-
-      #status.error {
-        color: red;
-      }
-
-      #preview {
-        max-width: 100%;
-        display: block;
-        margin: 1rem auto;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
-
-      @media (max-width: 600px) {
-        .header {
-          flex-direction: column;
-        }
-
-        .logo {
-          height: 40px;
-        }
-
-        h2 {
-          font-size: 1.25rem;
-        }
-
-        form {
-          padding: 1.5rem;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Header dengan logo dan judul -->
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
     <div class="header">
-      <img src="assets/logo.png" alt="Logo" class="logo" />
+      <img src="assets/logo.png" alt="Logo" />
       <h2>Form Pengaduan Masyarakat</h2>
     </div>
 
-    <!-- Penjelasan singkat -->
     <div class="intro">
       <p>
-        Formulir ini digunakan untuk menyampaikan pengaduan masyarakat terkait
-        kebersihan di lingkungan PSC dan PRC. Silakan isi data dengan lengkap dan
-        unggah foto sebagai bukti untuk ditindaklanjuti oleh petugas.
+        Formulir ini digunakan untuk menyampaikan pengaduan masyarakat terkait kebersihan di lingkungan PSC dan PRC. Silakan isi data dengan lengkap dan unggah foto sebagai bukti untuk ditindaklanjuti oleh petugas.
       </p>
     </div>
 
-    <!-- Form utama -->
     <form id="pengaduanForm">
-      <input
-        type="text"
-        name="namapelapor"
-        placeholder="Nama Pelapor"
-        required
-      />
+      <input type="text" name="namapelapor" placeholder="Nama Pelapor" required />
 
       <select name="jenispengaduan" required>
         <option value="">-- Pilih Jenis Pengaduan --</option>
@@ -163,76 +153,76 @@
 
       <input type="date" name="tanggal" required />
       <input type="file" name="foto" accept="image/*" required />
-      <img id="preview" style="display: none" />
+      <img id="preview" />
 
       <button type="submit">Kirim</button>
     </form>
 
     <p id="status"></p>
+  </div>
 
-    <script>
-      const form = document.getElementById("pengaduanForm");
-      const status = document.getElementById("status");
-      const preview = document.getElementById("preview");
+  <script>
+    const form = document.getElementById("pengaduanForm");
+    const status = document.getElementById("status");
+    const preview = document.getElementById("preview");
 
-      const scriptURL =
-        "https://script.google.com/macros/s/AKfycbwBHtYMd88QU8Tg3UfN43r9glnYPB48lN3GJLJzp3KS9W6zlXcK_FTSxqH3d_ylW2k-Gw/exec";
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwBHtYMd88QU8Tg3UfN43r9glnYPB48lN3GJLJzp3KS9W6zlXcK_FTSxqH3d_ylW2k-Gw/exec";
 
-      form.foto.addEventListener("change", () => {
-        const file = form.foto.files[0];
-        if (!file) return;
+    form.foto.addEventListener("change", () => {
+      const file = form.foto.files[0];
+      if (!file) return;
 
-        if (file.size > 2 * 1024 * 1024) {
-          status.textContent = "Ukuran file maksimal 2MB.";
-          status.className = "error";
-          form.foto.value = "";
+      if (file.size > 2 * 1024 * 1024) {
+        status.textContent = "Ukuran file maksimal 2MB.";
+        status.className = "error";
+        form.foto.value = "";
+        preview.style.display = "none";
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        preview.src = reader.result;
+        preview.style.display = "block";
+      };
+      reader.readAsDataURL(file);
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      status.textContent = "Mengirim...";
+      status.className = "";
+
+      const file = form.foto.files[0];
+      if (!file) {
+        status.textContent = "Silakan pilih file gambar.";
+        status.className = "error";
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const data = new FormData(form);
+        data.set("foto", reader.result);
+
+        fetch(scriptURL, {
+          method: "POST",
+          body: data,
+        })
+        .then((res) => res.text())
+        .then((text) => {
+          status.textContent = text;
+          status.className = "success";
+          form.reset();
           preview.style.display = "none";
-          return;
-        }
-
-        const reader = new FileReader();
-        reader.onload = () => {
-          preview.src = reader.result;
-          preview.style.display = "block";
-        };
-        reader.readAsDataURL(file);
-      });
-
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        status.textContent = "Mengirim...";
-        status.className = "";
-
-        const file = form.foto.files[0];
-        if (!file) {
-          status.textContent = "Silakan pilih file gambar.";
+        })
+        .catch((err) => {
+          status.textContent = "Error: " + err.message;
           status.className = "error";
-          return;
-        }
-
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          const data = new FormData(form);
-          data.set("foto", reader.result);
-
-          fetch(scriptURL, {
-            method: "POST",
-            body: data,
-          })
-            .then((res) => res.text())
-            .then((text) => {
-              status.textContent = text;
-              status.className = "success";
-              form.reset();
-              preview.style.display = "none";
-            })
-            .catch((err) => {
-              status.textContent = "Error: " + err.message;
-              status.className = "error";
-            });
-        };
-        reader.readAsDataURL(file);
-      });
-    </script>
-  </body>
+        });
+      };
+      reader.readAsDataURL(file);
+    });
+  </script>
+</body>
 </html>
