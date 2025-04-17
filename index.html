@@ -165,7 +165,7 @@
         <option value="Tanaman Rusak">Tanaman Rusak</option>
         <option value="Lampu Rusak">Lampu Rusak</option>
       </select>
-      <input type="text" name="lokasikejadian" placeholder="Lokasi Kejadian" required />
+      <input type="text" name="lokasikejadian" placeholder="Lokasi Kejadian (Isi Manual)" required />
       <input type="date" name="tanggal" required />
       <input type="file" name="foto" accept="image/*" required />
       <img id="preview" />
@@ -189,14 +189,6 @@
     form.foto.addEventListener("change", () => {
       const file = form.foto.files[0];
       if (!file) return;
-
-      if (file.size > 2 * 1024 * 1024) {
-        status.textContent = "Ukuran file maksimal 2MB.";
-        status.className = "error";
-        form.foto.value = "";
-        preview.style.display = "none";
-        return;
-      }
 
       const reader = new FileReader();
       reader.onload = () => {
