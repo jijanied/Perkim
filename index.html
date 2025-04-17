@@ -14,10 +14,18 @@
 
     body {
       margin: 0;
-      padding: 1.5rem;
-      background-color: #f4f6f8;
-      color: #333;
-    }
+  padding: 1.5rem;
+  background: linear-gradient(-45deg, #74ebd5, #acb6e5, #d4fc79, #96e6a1);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #333;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
     .container {
       max-width: 480px;
