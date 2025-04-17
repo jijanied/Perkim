@@ -14,18 +14,18 @@
 
     body {
       margin: 0;
-  padding: 1.5rem;
-  background: linear-gradient(-45deg, #74ebd5, #acb6e5, #d4fc79, #96e6a1);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-  color: #333;
-}
+      padding: 1.5rem;
+      background: linear-gradient(-45deg, #74ebd5, #acb6e5, #d4fc79, #96e6a1);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #333;
+    }
 
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
     .container {
       max-width: 480px;
@@ -63,6 +63,7 @@
       padding: 1.25rem;
       border-radius: 12px;
       box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+      transition: background-color 0.3s ease;
     }
 
     input,
@@ -139,6 +140,34 @@
         font-size: 1.5rem;
       }
     }
+
+    /* Spinner */
+    .spinner {
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-top: 4px solid white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 8px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Success flash effect */
+    .success-anim {
+      animation: successFlash 0.6s ease;
+    }
+
+    @keyframes successFlash {
+      0% { background-color: #d4edda; }
+      100% { background-color: white; }
+    }
   </style>
 </head>
 <body>
@@ -185,7 +214,7 @@
     const status = document.getElementById("status");
     const preview = document.getElementById("preview");
 
-    const scriptURL = "https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec";
+    const scriptURL = "https://script.google.com/macros/s/YOUR_SCRIPT_URL/exec"; // Ganti URL ini!
 
     form.foto.addEventListener("change", () => {
       const file = form.foto.files[0];
@@ -209,7 +238,7 @@
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      status.textContent = "Mengirim...";
+      status.innerHTML = `Mengirim <span class="spinner"></span>`;
       status.className = "";
 
       const reader = new FileReader();
@@ -227,6 +256,10 @@
           status.className = "success";
           form.reset();
           preview.style.display = "none";
+
+          // Efek sukses animasi
+          form.classList.add("success-anim");
+          setTimeout(() => form.classList.remove("success-anim"), 600);
         })
         .catch((err) => {
           status.textContent = "Error: " + err.message;
