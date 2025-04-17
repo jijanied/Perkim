@@ -4,22 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form Pengaduan Masyarakat</title>
+    <link rel="icon" type="image/png" href="assets/logo.png" />
     <style>
       body {
         font-family: Arial, sans-serif;
         background-color: #f2f2f2;
         margin: 0;
         padding: 1rem;
-      }
-
-      header {
-        text-align: center;
-        margin-bottom: 2rem;
-      }
-
-      header img {
-        width: 120px;
-        height: auto;
       }
 
       h2 {
@@ -36,7 +27,8 @@
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
       }
 
-      input, select {
+      input,
+      select {
         width: 100%;
         margin-bottom: 1rem;
         padding: 0.75rem;
@@ -84,14 +76,15 @@
     </style>
   </head>
   <body>
-    <header>
-  <img src="https://raw.githubusercontent.com/jijanied/perkim/main/assets/logo.png" alt="Logo" />
-    </header>
-
     <h2>Form Pengaduan Masyarakat</h2>
 
     <form id="pengaduanForm">
-      <input type="text" name="namapelapor" placeholder="Nama Pelapor" required />
+      <input
+        type="text"
+        name="namapelapor"
+        placeholder="Nama Pelapor"
+        required
+      />
 
       <select name="jenispengaduan" required>
         <option value="">-- Pilih Jenis Pengaduan --</option>
@@ -108,7 +101,7 @@
 
       <input type="date" name="tanggal" required />
       <input type="file" name="foto" accept="image/*" required />
-      <img id="preview" style="display:none;" />
+      <img id="preview" style="display: none" />
 
       <button type="submit">Kirim</button>
     </form>
@@ -120,12 +113,13 @@
       const status = document.getElementById("status");
       const preview = document.getElementById("preview");
 
-      const scriptURL = "https://script.google.com/macros/s/AKfycbwBHtYMd88QU8Tg3UfN43r9glnYPB48lN3GJLJzp3KS9W6zlXcK_FTSxqH3d_ylW2k-Gw/exec";
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbwBHtYMd88QU8Tg3UfN43r9glnYPB48lN3GJLJzp3KS9W6zlXcK_FTSxqH3d_ylW2k-Gw/exec";
 
       form.foto.addEventListener("change", () => {
         const file = form.foto.files[0];
         if (!file) return;
-        
+
         if (file.size > 2 * 1024 * 1024) {
           status.textContent = "Ukuran file maksimal 2MB.";
           status.className = "error";
@@ -161,7 +155,7 @@
 
           fetch(scriptURL, {
             method: "POST",
-            body: data
+            body: data,
           })
             .then((res) => res.text())
             .then((text) => {
